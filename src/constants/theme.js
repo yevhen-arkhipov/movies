@@ -8,8 +8,9 @@ export const theme = {
   },
   space: [10, 30, 40, 300],
   fontSizes: {
+    xs: 12,
     s: 14,
-    m: 16,
+    m: 26,
     l: 32,
   },
   shadows: {

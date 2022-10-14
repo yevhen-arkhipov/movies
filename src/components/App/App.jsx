@@ -1,64 +1,111 @@
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
+import { PhonebookTitle, ContactsTitle } from './App.styled';
 
-// import Box from 'components/Box';
-// import Section from 'components/Section';
-// import FeedbackOptions from 'components/FeedbackOptions';
-// import Statistics from 'components/Statistics';
-// import Notification from 'components/Notification';
+import Box from 'components/Box';
+import ContactForm from 'components/ContactForm';
+import Filter from 'components/Filter';
+import ContactList from 'components/ContactList';
 
-// export class App extends Component {
-//   state = {
-//     good: 0,
-//     neutral: 0,
-//     bad: 0,
-//   };
+export class App extends Component {
+  state = {
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
+  };
 
-//   onLeaveFeedback = event => {
-//     this.setState(prevState => ({
-//       [event.target.value]: prevState[event.target.value] + 1,
-//     }));
-//   };
+  contactsHandler = ({ name, number }) => {
+    const lowerCaseName = name.toLowerCase();
+    const nameСomparison = this.state.contacts.find(
+      contact => contact.name.toLowerCase() === lowerCaseName
+    );
 
-//   countTotalFeedback = () =>
-//     this.state.good + this.state.neutral + this.state.bad;
+    if (!nameСomparison) {
+      const contact = { id: nanoid(), name: name, number: number };
 
-//   countPositiveFeedbackPercentage = () =>
-//     Math.floor((this.state.good / this.countTotalFeedback()) * 100);
+      this.setState(prevState => ({
+        contacts: [contact, ...prevState.contacts],
+      }));
+    } else {
+      alert(`${name} is already in contacts.`);
+    }
+  };
 
-//   render() {
-//     return (
-//       <>
-//         <Box
-//           display="flex"
-//           flexDirection="column"
-//           width="1280px"
-//           height="700px"
-//           pt={3}
-//           bg="bodyColor"
-//           boxShadow="outline"
-//           as="main"
-//         >
-//           <Section title={'Please leave feedback'}>
-//             <FeedbackOptions
-//               options={Object.keys(this.state)}
-//               onLeaveFeedback={this.onLeaveFeedback}
-//             />
-//           </Section>
-//           <Section title={'Statistics'}>
-//             {this.countTotalFeedback() > 0 ? (
-//               <Statistics
-//                 good={this.state.good}
-//                 neutral={this.state.neutral}
-//                 bad={this.state.bad}
-//                 total={this.countTotalFeedback()}
-//                 positivePercentage={this.countPositiveFeedbackPercentage()}
-//               />
-//             ) : (
-//               <Notification message="There is no feedback" />
-//             )}
-//           </Section>
-//         </Box>
-//       </>
-//     );
-//   }
-// }
+  filterHandler = e => {
+    this.setState({
+      filter: e.currentTarget.value,
+    });
+  };
+
+  filterContacts = () => {
+    const lowerCaseFilter = this.state.filter.toLowerCase();
+    return this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(lowerCaseFilter)
+    );
+  };
+
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
+  render() {
+    return (
+      <>
+        <Box
+          display="flex"
+          justifyContent="space-around"
+          alignItems="center"
+          width="1280px"
+          height="970px"
+          bg="bodyColor"
+          boxShadow="outline"
+          as="main"
+        >
+          <Box
+            pt={1}
+            pb={1}
+            bg="btnColor"
+            as="section"
+            boxShadow="outline"
+            borderRadius="5px"
+          >
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              mb={1}
+              width="400px"
+              as="div"
+            >
+              <PhonebookTitle>Phonebook</PhonebookTitle>
+              <ContactForm onSubmit={this.contactsHandler} />
+            </Box>
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              width="400px"
+              as="div"
+            >
+              <ContactsTitle>Contacts</ContactsTitle>
+              <Filter
+                filter={this.state.filter}
+                onFilter={this.filterHandler}
+              />
+              <ContactList
+                contacts={this.filterContacts}
+                onDeleteContact={this.deleteContact}
+              />
+            </Box>
+          </Box>
+        </Box>
+      </>
+    );
+  }
+}
