@@ -8,6 +8,7 @@ export const Form = styled.form`
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
+  align-items: center;
   color: ${p => p.theme.colors.text};
   font-size: ${p => p.theme.fontSizes.s}px;
   font-weight: bold;
@@ -18,6 +19,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  margin-top: 5px;
   width: 230px;
   height: 20px;
   background-color: ${p => p.theme.colors.bodyColor};
@@ -39,6 +41,8 @@ export const Button = styled.button`
   border-color: transparent;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover,
   &:focus {
     background-color: ${p => p.theme.colors.btnColor};

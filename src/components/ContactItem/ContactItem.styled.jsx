@@ -28,6 +28,7 @@ export const Button = styled.button`
   border-color: transparent;
   border-radius: 3px;
   cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { PhonebookTitle, ContactsTitle } from './App.styled';
 
 import Box from 'components/Box';
@@ -31,7 +32,14 @@ export class App extends Component {
         contacts: [contact, ...prevState.contacts],
       }));
     } else {
-      alert(`${name} is already in contacts.`);
+      Notify.failure(`${name} is already in contacts.`, {
+        position: 'center-top',
+        width: '300px',
+        fontSize: '14px',
+        failure: {
+          background: '#883f2d',
+        },
+      });
     }
   };
 

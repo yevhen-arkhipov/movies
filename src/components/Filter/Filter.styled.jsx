@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
+  align-items: center;
   color: ${p => p.theme.colors.text};
   font-size: ${p => p.theme.fontSizes.s}px;
   font-weight: bold;
@@ -10,6 +11,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  margin-top: 5px;
   width: 230px;
   height: 20px;
   background-color: ${p => p.theme.colors.bodyColor};
