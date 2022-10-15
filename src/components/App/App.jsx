@@ -10,8 +10,6 @@ import ContactList from 'components/ContactList';
 
 export class App extends Component {
   state = {
-    name: '',
-    number: '',
     filter: '',
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -98,7 +96,7 @@ export class App extends Component {
               <PhonebookTitle>Phonebook</PhonebookTitle>
               <ContactForm
                 onSubmit={this.contactsHandler}
-                options={this.state}
+                options={{ name: '', number: '' }}
               />
             </Box>
             <Box
