@@ -1,18 +1,16 @@
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
+import id from 'utils/nanoid';
 import { Label, Input } from './Filter.styled';
 
 import Box from 'components/Box';
 
-const filterId = nanoid();
-
 const Filter = ({ filter, onFilter }) => {
   return (
     <Box>
-      <Label htmlFor={filterId}>
+      <Label htmlFor={id.filter}>
         Find contacts by name
         <Input
-          id={filterId}
+          id={id.filter}
           type="text"
           value={filter}
           name="filter"

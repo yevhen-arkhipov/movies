@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { Form, Field, ErrorMessage } from 'formik';
 
-export const Form = styled.form`
+export const DataForm = styled(Form)`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const Label = styled.label`
@@ -18,7 +20,7 @@ export const Label = styled.label`
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   margin-top: 5px;
   width: 230px;
   height: 20px;
@@ -28,12 +30,20 @@ export const Input = styled.input`
   border-radius: 2px;
 `;
 
+export const Error = styled(ErrorMessage)`
+  margin-top: 5px;
+  margin-left: 15px;
+  color: red;
+  font-size: ${p => p.theme.fontSizes.xs}px;
+`;
+
 export const Button = styled.button`
   margin-top: 30px;
   padding-top: ${p => p.theme.space[0]}px;
   padding-right: ${p => p.theme.space[1]}px;
   padding-bottom: ${p => p.theme.space[0]}px;
   padding-left: ${p => p.theme.space[1]}px;
+  width: 238px;
   font-size: ${p => p.theme.fontSizes.s}px;
   font-weight: bold;
   background-color: ${p => p.theme.colors.secondBtnColor};
