@@ -81,9 +81,9 @@ export class App extends Component {
             pt={1}
             pb={1}
             bg="btnColor"
-            as="section"
             boxShadow="outline"
             borderRadius="5px"
+            as="section"
           >
             <Box
               display="flex"
