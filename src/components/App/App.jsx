@@ -70,7 +70,7 @@ export class App extends Component {
   };
 
   onLoadMoreHandle = () => {
-    jump(1000);
+    jump(1200);
     this.setState(prevState => {
       return { pageNumber: prevState.pageNumber + 1 };
     });
