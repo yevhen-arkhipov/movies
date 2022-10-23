@@ -1,20 +1,23 @@
 export const theme = {
   colors: {
-    bodyColor: '#e7ecf2',
-    btnColor: '#ffffff',
-    secondBtnColor: '#883f2d',
-    text: '#000000',
-    secondText: '#ffffff',
+    mainColor: '#fff',
+    secondColor: '#eee',
+    text: '#000',
+    buttonBorder: '#d1d1d1',
+    buttonColor: '#767676',
+    secondButtonBorder: '#767676',
+    secondButtonColor: '#111',
   },
-  space: [10, 30, 40, 300],
+  space: [4, 12, 16, 24, 48],
   fontSizes: {
-    xs: 12,
-    s: 14,
-    m: 26,
-    l: 32,
+    s: 16,
+    m: 18,
+    l: 19,
   },
   shadows: {
+    box: 'inset 0 -1px #d1d1d1',
+    buttonBox: '0 1px 2px #00000014',
     outline:
-      'rgb(0 0 0 / 12%) 0px 1px 1px, rgb(0 0 0 / 6%) 0px 4px 4px, rgb(0 0 0 / 16%) 1px 4px 6px',
+      '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)',
   },
 };

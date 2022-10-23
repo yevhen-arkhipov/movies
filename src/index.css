@@ -22,12 +22,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
 h1,
 h2,
 h3,
@@ -45,7 +39,8 @@ ol {
   list-style: none;
 }
 
-/* #root {
-  display: flex;
-  justify-content: center;
-} */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
