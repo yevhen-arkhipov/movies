@@ -12,19 +12,19 @@ import {
 
 const Searchbar = ({ onSubmit }) => {
   const handleSubmit = (values, { resetForm }) => {
-    onSubmit(values.searchQuery);
+    onSubmit(values.name);
     resetForm();
   };
   return (
     <Header>
-      <Formik initialValues={{ searchQuery: '' }} onSubmit={handleSubmit}>
+      <Formik initialValues={{ name: '' }} onSubmit={handleSubmit}>
         <SearchForm>
           <Button type="submit">
             <SearchIcon />
           </Button>
           <Input
             type="text"
-            name="searchQuery"
+            name="name"
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"

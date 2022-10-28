@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import { useState, useEffect } from 'react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import jump from 'jump.js';
 
 import Box from 'components/Box';
 import Searchbar from 'components/Searchbar';
 import ImageGallery from 'components/ImageGallery';
-import Modal from 'components/Modal';
 import Loader from 'components/Loader';
 import Button from 'components/Button';
 
@@ -12,118 +12,73 @@ import { getImages } from 'services/api';
 
 import { Container } from './App.styled';
 
-export class App extends Component {
-  state = {
-    imageQuery: '',
-    pageNumber: 1,
-    totalPages: 0,
-    status: 'idle',
-    images: [],
-    showModal: false,
-    currentImage: {},
-    error: '',
-  };
+export const App = () => {
+  const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [images, setImages] = useState([]);
+  const [error, setError] = useState(null);
 
-  componentDidUpdate(_, prevState) {
-    const { imageQuery, pageNumber } = this.state;
-    const currentimageQuery = imageQuery;
-    const currentPage = pageNumber;
+  Notify.init({
+    width: '320px',
+    position: 'center-top',
+    distance: '70px',
+    clickToClose: true,
+    cssAnimationStyle: 'from-top',
+    cssAnimationDuration: 800,
+  });
 
-    if (
-      prevState.imageQuery !== currentimageQuery ||
-      prevState.pageNumber !== currentPage
-    ) {
-      this.setState({ status: 'pending' });
-      getImages(currentimageQuery, currentPage)
-        .then(data => {
-          if (data.hits.lenght === 0) {
-            return Promise.reject(
-              new Error(`Cannot find ${currentimageQuery}`)
-            );
-          }
-          const totalPages = Math.ceil(data.totalHits / 12);
-
-          const requiredHits = data.hits.map(
-            ({ id, webformatURL, largeImageURL, tags }) => {
-              return { id, webformatURL, largeImageURL, tags };
-            }
-          );
-          this.setState(prevState => {
-            return {
-              images: [...prevState.images, ...requiredHits],
-              totalPages: totalPages,
-            };
-          });
-        })
-        .then(() => {
-          this.setState({ status: 'done', error: '' });
-        })
-        .catch(error => {
-          this.setState({ status: 'error', error: error.message });
-        });
+  useEffect(() => {
+    if (!query) {
       return;
     }
-  }
 
-  onSearchHandle = value => {
-    this.setState({ imageQuery: value, pageNumber: 1, images: [] });
+    const findImages = async () => {
+      try {
+        setIsLoading(true);
+
+        const photos = await getImages(query, page);
+        photos.hits.length === 0
+          ? Notify.failure('Sorry, no images found. Try something else!')
+          : setImages(images => [...images, ...photos.hits]);
+      } catch (error) {
+        setError(error.massage);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    findImages();
+  }, [page, query]);
+
+  const getQuery = inputQuery => {
+    if (inputQuery !== query) {
+      setQuery(inputQuery);
+      setPage(1);
+      setImages([]);
+    }
   };
 
-  onLoadMoreHandle = () => {
-    jump(1200);
-    this.setState(prevState => {
-      return { pageNumber: prevState.pageNumber + 1 };
-    });
+  const LoadMore = () => {
+    jump(900);
+    setPage(prevPage => prevPage + 1);
   };
 
-  onGalleryClickHandle = imageId => {
-    const currentImage = this.state.images.find(item => {
-      return item.id === Number(imageId);
-    });
-    this.setState({ currentImage: currentImage, showModal: true });
-  };
-
-  onCloseModal = () => {
-    this.setState({ showModal: false });
-  };
-
-  render() {
-    const {
-      showModal,
-      status,
-      images,
-      currentImage,
-      error,
-      totalPages,
-      pageNumber,
-    } = this.state;
-
-    return (
-      <>
-        <Box as="main">
-          <Container>
-            <Searchbar onSubmit={this.onSearchHandle} />
-            {images.length !== 0 && (
-              <ImageGallery
-                images={images}
-                onClick={this.onGalleryClickHandle}
-              />
-            )}
-            {status === 'pending' && <Loader />}
-            {totalPages > pageNumber && (
-              <Button onClick={this.onLoadMoreHandle}>Load more</Button>
-            )}
-            {showModal && (
-              <Modal
-                imageUrl={currentImage.largeImageURL}
-                alt={currentImage.tags}
-                onCloseModal={this.onCloseModal}
-              />
-            )}
-            {status === 'error' && <p>{error}</p>}
-          </Container>
-        </Box>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Box as="main">
+        <Container>
+          {error && <h1>Oops, error, try again!</h1>}
+          <Searchbar onSubmit={getQuery} />
+          {images && <ImageGallery images={images} />}
+          {isLoading && <Loader />}
+          {images.length % 15 === 0 && images.length !== 0 ? (
+            <Button onFetchMore={LoadMore} />
+          ) : (
+            ''
+          )}
+        </Container>
+      </Box>
+    </>
+  );
+};

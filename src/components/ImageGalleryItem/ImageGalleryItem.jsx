@@ -1,27 +1,37 @@
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
+import Modal from 'components/Modal';
 
 import { ImageGalleryCard, ImageGalleryImage } from './ImageGalleryItem.styled';
 
-const ImageGalleryItem = ({ imageUrl, alt, id, onClick }) => {
+const ImageGalleryItem = ({ webformatURL, tags = 'Image', largeImageURL }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
-    <ImageGalleryCard>
-      <ImageGalleryImage
-        id={id}
-        src={imageUrl}
-        alt={alt}
-        onClick={e => {
-          onClick(e.target.id);
-        }}
-      />
-    </ImageGalleryCard>
+    <>
+      <ImageGalleryCard onClick={toggleModal}>
+        <ImageGalleryImage
+          src={webformatURL}
+          alt={tags}
+          data-large={largeImageURL}
+        />
+      </ImageGalleryCard>
+      {showModal && (
+        <Modal image={largeImageURL} tags={tags} onClose={toggleModal} />
+      )}
+    </>
   );
 };
 
 ImageGalleryItem.propTypes = {
-  imageUrl: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
+  webformatURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
 };
 
 export default ImageGalleryItem;
