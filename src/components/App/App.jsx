@@ -12,21 +12,12 @@ import { getImages } from 'services/api';
 
 import { Container } from './App.styled';
 
-export const App = () => {
+const App = () => {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState([]);
   const [error, setError] = useState(null);
-
-  Notify.init({
-    width: '320px',
-    position: 'center-top',
-    distance: '70px',
-    clickToClose: true,
-    cssAnimationStyle: 'from-top',
-    cssAnimationDuration: 800,
-  });
 
   useEffect(() => {
     if (!query) {
@@ -82,3 +73,5 @@ export const App = () => {
     </>
   );
 };
+
+export default App;
