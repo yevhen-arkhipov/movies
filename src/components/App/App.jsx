@@ -1,63 +1,65 @@
-import { useState, useEffect } from 'react';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import jump from 'jump.js';
+import React from 'react';
+// import { useState, useEffect } from 'react';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import jump from 'jump.js';
 
-import Box from 'components/Box';
-import Searchbar from 'components/Searchbar';
-import ImageGallery from 'components/ImageGallery';
-import Loader from 'components/Loader';
-import Button from 'components/Button';
+// import Box from 'components/Box';
+// import Searchbar from 'components/Searchbar';
+// import ImageGallery from 'components/ImageGallery';
+// import Loader from 'components/Loader';
+// import Button from 'components/Button';
 
-import { getImages } from 'services/api';
+// import { getMovies } from 'services/api';
 
-import { Container } from './App.styled';
+// import { Container } from './App.styled';
 
 const App = () => {
-  const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState([]);
-  const [error, setError] = useState(null);
+  // const [query, setQuery] = useState('');
+  // const [page, setPage] = useState(1);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [images, setImages] = useState([]);
+  // const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (!query) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (!query) {
+  //     return;
+  //   }
 
-    const findImages = async () => {
-      try {
-        setIsLoading(true);
+  //   const findImages = async () => {
+  //     try {
+  //       setIsLoading(true);
 
-        const photos = await getImages(query, page);
-        photos.hits.length === 0
-          ? Notify.failure('Sorry, no images found. Try something else!')
-          : setImages(images => [...images, ...photos.hits]);
-      } catch (error) {
-        setError(error.massage);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  //       const photos = await getImages(query, page);
+  //       photos.hits.length === 0
+  //         ? Notify.failure('Sorry, no images found. Try something else!')
+  //         : setImages(images => [...images, ...photos.hits]);
+  //     } catch (error) {
+  //       setError(error.massage);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    findImages();
-  }, [page, query]);
+  //   findImages();
+  // }, [page, query]);
 
-  const getQuery = inputQuery => {
-    if (inputQuery !== query) {
-      setQuery(inputQuery);
-      setPage(1);
-      setImages([]);
-    }
-  };
+  // const getQuery = inputQuery => {
+  //   if (inputQuery !== query) {
+  //     setQuery(inputQuery);
+  //     setPage(1);
+  //     setImages([]);
+  //   }
+  // };
 
-  const LoadMore = () => {
-    jump(900);
-    setPage(prevPage => prevPage + 1);
-  };
+  // const LoadMore = () => {
+  //   jump(900);
+  //   setPage(prevPage => prevPage + 1);
+  // };
 
   return (
     <>
-      <Box as="main">
+      <h1>Init</h1>
+      {/* <Box as="main">
         <Container>
           {error && <h1>Oops, error, try again!</h1>}
           <Searchbar onSubmit={getQuery} />
@@ -69,7 +71,7 @@ const App = () => {
             ''
           )}
         </Container>
-      </Box>
+      </Box> */}
     </>
   );
 };
