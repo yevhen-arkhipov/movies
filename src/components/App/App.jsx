@@ -1,17 +1,22 @@
-import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+
 // import { useState, useEffect } from 'react';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import jump from 'jump.js';
 
-// import Box from 'components/Box';
+import SharedLayout from 'components/SharedLayout';
+import Home from 'pages/Home';
+import Movies from 'pages/Movies';
+import NotFound from 'pages/NotFound';
+import MovieDetails from 'components/MovieDetails';
+import Cast from 'components/Cast';
+import Reviews from 'components/Reviews';
 // import Searchbar from 'components/Searchbar';
 // import ImageGallery from 'components/ImageGallery';
 // import Loader from 'components/Loader';
 // import Button from 'components/Button';
 
 // import { getMovies } from 'services/api';
-
-// import { Container } from './App.styled';
 
 const App = () => {
   // const [query, setQuery] = useState('');
@@ -58,9 +63,19 @@ const App = () => {
 
   return (
     <>
-      <h1>Init</h1>
-      {/* <Box as="main">
-        <Container>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/movies" element={<Movies />}>
+            <Route path="/movies/:movieId" element={<MovieDetails />} />
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+
+      {/* <Container>
           {error && <h1>Oops, error, try again!</h1>}
           <Searchbar onSubmit={getQuery} />
           {images && <ImageGallery images={images} />}
@@ -70,8 +85,7 @@ const App = () => {
           ) : (
             ''
           )}
-        </Container>
-      </Box> */}
+        </Container> */}
     </>
   );
 };

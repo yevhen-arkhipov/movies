@@ -1,8 +1,10 @@
-import styled from 'styled-components';
+// import styled from 'styled-components';
+// import { NavLink } from 'react-router-dom';
 
-export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: ${p => p.theme.space[2]}px;
-  padding-bottom: ${p => p.theme.space[3]}px;
-`;
+// export const StyledLink = styled(NavLink)`
+//   color: black;
+
+//   &.active {
+//     color: orange;
+//   }
+// `;
