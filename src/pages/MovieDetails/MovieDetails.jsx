@@ -51,7 +51,7 @@ const MovieDetails = () => {
     'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg';
 
   return (
-    <div>
+    <section>
       <button onClick={goBackPage}>
         <HiOutlineArrowCircleLeft size="16px" />
         Go back
@@ -91,7 +91,7 @@ const MovieDetails = () => {
         </ul>
       </div>
       <Outlet />
-    </div>
+    </section>
   );
 };
 

@@ -19,9 +19,9 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <section>
       <MovieList movies={trendMovie} title="Trending movies:" />
-    </div>
+    </section>
   );
 };
 

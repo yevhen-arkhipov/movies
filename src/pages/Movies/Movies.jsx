@@ -32,10 +32,10 @@ const Movies = () => {
   };
 
   return (
-    <div>
+    <section>
       <SearchForm onSubmit={changeQuery} />
       {searchMovies.length > 0 && <MovieList movies={searchMovies} />}
-    </div>
+    </section>
   );
 };
 
