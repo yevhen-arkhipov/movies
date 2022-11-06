@@ -1,20 +1,24 @@
 import { Outlet } from 'react-router-dom';
 
-import Box from 'components/Box';
-
 import { StyledLink } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   return (
-    <Box as="div" display="flex" flexDirection="column">
+    <>
       <header>
+        <div>
+          <span role="img" aria-label="movie icon">
+            📽️
+          </span>{' '}
+          Movies
+        </div>
         <nav>
           <StyledLink to="/">Home</StyledLink>
           <StyledLink to="/movies">Movies</StyledLink>
         </nav>
       </header>
       <Outlet />
-    </Box>
+    </>
   );
 };
 
