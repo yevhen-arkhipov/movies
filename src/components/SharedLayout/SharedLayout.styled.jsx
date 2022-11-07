@@ -17,7 +17,6 @@ export const Container = styled.div`
 
 export const LogoLink = styled.a`
   display: flex;
-  margin-left: 90px;
   text-decoration: none;
 `;
 
