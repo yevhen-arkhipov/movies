@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import PropTypes from 'prop-types';
 
+import { Form, Input, Button } from './SearchForm.styled';
+
 const SearchForm = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
 
@@ -18,7 +20,7 @@ const SearchForm = ({ onSubmit }) => {
         width: '300px',
         fontSize: '14px',
         failure: {
-          background: '#883f2d',
+          background: '#ff0000',
         },
       });
     }
@@ -27,17 +29,17 @@ const SearchForm = ({ onSubmit }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmitForm}>
-        <input
+    <>
+      <Form onSubmit={onSubmitForm}>
+        <Input
           onChange={onChangeValue}
           type="text"
           name="query"
           value={query}
         />
-        <button type="submit">Search</button>
-      </form>
-    </div>
+        <Button type="submit">Search</Button>
+      </Form>
+    </>
   );
 };
 

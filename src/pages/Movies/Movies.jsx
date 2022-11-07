@@ -6,6 +6,8 @@ import { GetMovieBySearch } from 'services/api';
 import SearchForm from 'components/SearchForm';
 import MovieList from 'components/MovieList';
 
+import { Section, Container } from './Movies.styled';
+
 const Movies = () => {
   const [searchMovies, setSearchMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -32,10 +34,12 @@ const Movies = () => {
   };
 
   return (
-    <section>
-      <SearchForm onSubmit={changeQuery} />
-      {searchMovies.length > 0 && <MovieList movies={searchMovies} />}
-    </section>
+    <Section>
+      <Container>
+        <SearchForm onSubmit={changeQuery} />
+        {searchMovies.length > 0 && <MovieList movies={searchMovies} />}
+      </Container>
+    </Section>
   );
 };
 

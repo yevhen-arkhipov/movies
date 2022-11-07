@@ -1,12 +1,24 @@
-import { Link } from 'react-router-dom';
+import {
+  Section,
+  Container,
+  Title,
+  Text,
+  ToMainLink,
+  Icon,
+} from './NotFound.styled';
 
 const NotFound = () => {
   return (
-    <div>
-      <h2>404</h2>
-      <p>Ooops, page not found</p>
-      <Link to="/">To main page</Link>
-    </div>
+    <Section>
+      <Container>
+        <Title>404</Title>
+        <Text>Ooops, page not found...</Text>
+        <ToMainLink to="/">
+          <Icon size="18px" />
+          To main page
+        </ToMainLink>
+      </Container>
+    </Section>
   );
 };
 

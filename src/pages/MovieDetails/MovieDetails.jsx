@@ -1,14 +1,23 @@
 import { useState, useEffect } from 'react';
-import {
-  Outlet,
-  useParams,
-  Link,
-  useNavigate,
-  useLocation,
-} from 'react-router-dom';
-import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
+import { Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 
 import { GetMovieById } from 'services/api';
+
+import {
+  Section,
+  Container,
+  Button,
+  Icon,
+  MovieCard,
+  MovieImg,
+  MovieDescr,
+  MovieTitle,
+  MovieText,
+  MoreDetailes,
+  MoreDetailesList,
+  MoreDetailesButton,
+  MoreDetailesItem,
+} from './MovieDetails.styled';
 
 const items = [
   { text: 'Cast', href: 'cast' },
@@ -47,51 +56,54 @@ const MovieDetails = () => {
 
   const filterGenre = genres.map(genre => genre.name).join(' ');
   const baseImgUrl = 'https://image.tmdb.org/t/p/w500/';
-  const defaultImg =
-    'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg';
+  const defaultImg = 'https://i.ibb.co/nw331jk/1.jpg';
 
   return (
-    <section>
-      <button onClick={goBackPage}>
-        <HiOutlineArrowCircleLeft size="16px" />
-        Go back
-      </button>
-      <div>
-        <img
-          src={poster_path ? `${baseImgUrl}${poster_path}` : defaultImg}
-          alt={original_title}
-          width="300"
-        />
-        <div>
-          <h3>{original_title}</h3>
-          <p>
-            <b>User Score:</b>
-            {vote_average}%
-          </p>
-          <p>
-            <b>Overview:</b>
-          </p>
-          {overview}
-          <p>
-            <b>Genres:</b>
-          </p>
-          {filterGenre}
-        </div>
-      </div>
-
-      <div>
-        <ul>
-          {items.map(({ text, href }) => (
-            <li key={text}>
-              <Link state={{ from }} to={href}>
-                {text}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <Outlet />
-    </section>
+    <Section>
+      <Container>
+        <Button onClick={goBackPage}>
+          <Icon size="18px" />
+          Go back
+        </Button>
+        <MovieCard>
+          <MovieImg
+            src={poster_path ? `${baseImgUrl}${poster_path}` : defaultImg}
+            alt={original_title}
+            width="300"
+          />
+          <MovieDescr>
+            <MovieTitle>{original_title}</MovieTitle>
+            <MovieText>
+              <b>User Score: </b>
+              {vote_average}%
+            </MovieText>
+            <MovieText>
+              <b>Overview: </b>
+              {overview}
+            </MovieText>
+            <MovieText>
+              <b>Genres: </b>
+              {filterGenre}
+            </MovieText>
+            <MoreDetailes>
+              <MovieText>
+                <b>Additional Information</b>
+              </MovieText>
+              <MoreDetailesList>
+                {items.map(({ text, href }) => (
+                  <MoreDetailesItem key={text}>
+                    <MoreDetailesButton state={{ from }} to={href}>
+                      {text}
+                    </MoreDetailesButton>
+                  </MoreDetailesItem>
+                ))}
+              </MoreDetailesList>
+            </MoreDetailes>
+          </MovieDescr>
+        </MovieCard>
+        <Outlet />
+      </Container>
+    </Section>
   );
 };
 

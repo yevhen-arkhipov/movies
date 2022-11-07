@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { TrendingMovie } from 'services/api';
 import MovieList from 'components/MovieList';
 
+import { Section, Container } from './Home.styled.jsx';
+
 const Home = () => {
   const [trendMovie, setTrendMovie] = useState([]);
 
@@ -19,9 +21,11 @@ const Home = () => {
   }, []);
 
   return (
-    <section>
-      <MovieList movies={trendMovie} title="Trending movies:" />
-    </section>
+    <Section>
+      <Container>
+        <MovieList movies={trendMovie} title="Trending today" />
+      </Container>
+    </Section>
   );
 };
 

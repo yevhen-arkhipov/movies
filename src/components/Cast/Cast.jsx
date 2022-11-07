@@ -3,6 +3,15 @@ import { useParams } from 'react-router-dom';
 
 import { GetCast } from 'services/api';
 
+import {
+  CastList,
+  CastCard,
+  CastImg,
+  CastTitle,
+  CastText,
+  CastError,
+} from './Cast.styled';
+
 const Cast = () => {
   const [casts, setCasts] = useState([]);
 
@@ -21,25 +30,22 @@ const Cast = () => {
   }, [movieId]);
 
   const baseImgUrl = 'https://image.tmdb.org/t/p/w185';
-  const defaultImg =
-    'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
+  const defaultImg = 'https://i.ibb.co/mHBWWH3/1.jpg';
   const elements = casts.map(({ id, character, name, profile_path }) => (
-    <li key={id}>
-      <img
+    <CastCard key={id}>
+      <CastImg
         src={profile_path ? `${baseImgUrl}${profile_path}` : defaultImg}
         alt={name}
-        height="277px"
-        width="185px"
       />
-      <p>{name}</p>
-      <p>Character: {character}</p>
-    </li>
+      <CastTitle>{name}</CastTitle>
+      <CastText>Character: {character}</CastText>
+    </CastCard>
   ));
 
   return casts.length > 0 ? (
-    <ul> {elements} </ul>
+    <CastList> {elements} </CastList>
   ) : (
-    <p>We don't have any actors for this movie</p>
+    <CastError>We don't have any actors for this movie</CastError>
   );
 };
 
