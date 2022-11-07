@@ -19,8 +19,8 @@ export const Input = styled.input`
 
   &:hover,
   &:focus {
-    background-color: ${p => p.theme.colors.inputColor};
     border: 1px solid ${p => p.theme.colors.hoverNavColor};
+    outline-style: none;
   }
 `;
 

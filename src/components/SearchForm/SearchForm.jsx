@@ -36,6 +36,7 @@ const SearchForm = ({ onSubmit }) => {
           type="text"
           name="query"
           value={query}
+          autoComplete="off"
         />
         <Button type="submit">Search</Button>
       </Form>
