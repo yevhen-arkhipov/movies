@@ -15,7 +15,7 @@ const SharedLayout = () => {
     <>
       <Header>
         <Container>
-          <LogoLink href="/">
+          <LogoLink href="/goit-react-hw-05-movies/">
             <Logo role="img" aria-label="movie icon">
               📽️
             </Logo>{' '}

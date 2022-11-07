@@ -15,7 +15,6 @@ root.render(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <BrowserRouter basename="/goit-react-hw-05-movies/">
-        {/* <BrowserRouter> */}
         <App />
       </BrowserRouter>
     </ThemeProvider>
