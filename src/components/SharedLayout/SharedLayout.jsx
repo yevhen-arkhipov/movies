@@ -1,4 +1,7 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+
+import Loader from 'components/Loader';
 
 import {
   Header,
@@ -15,7 +18,7 @@ const SharedLayout = () => {
     <>
       <Header>
         <Container>
-          <LogoLink href="/goit-react-hw-05-movies/">
+          <LogoLink to="/">
             <Logo role="img" aria-label="movie icon">
               📽️
             </Logo>{' '}
@@ -27,7 +30,9 @@ const SharedLayout = () => {
           </NavList>
         </Container>
       </Header>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

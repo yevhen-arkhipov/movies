@@ -29,7 +29,7 @@ const MovieDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from || '/';
+  const from = location.state?.from ?? '/';
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -46,13 +46,7 @@ const MovieDetails = () => {
 
   const goBackPage = () => navigate(from);
 
-  const {
-    original_title,
-    overview,
-    genres = [],
-    vote_average,
-    poster_path,
-  } = movie;
+  const { title, overview, genres = [], vote_average, poster_path } = movie;
 
   const filterGenre = genres.map(genre => genre.name).join(' ');
   const baseImgUrl = 'https://image.tmdb.org/t/p/w500/';
@@ -68,11 +62,11 @@ const MovieDetails = () => {
         <MovieCard>
           <MovieImg
             src={poster_path ? `${baseImgUrl}${poster_path}` : defaultImg}
-            alt={original_title}
+            alt={title}
             width="300"
           />
           <MovieDescr>
-            <MovieTitle>{original_title}</MovieTitle>
+            <MovieTitle>{title}</MovieTitle>
             <MovieText>
               <b>User Score: </b>
               {vote_average}%

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
   display: flex;
@@ -15,10 +15,15 @@ export const Container = styled.div`
   font-size: ${p => p.theme.fontSizes.xxl}px;
 `;
 
-export const LogoLink = styled.a`
+export const LogoLink = styled(Link)`
   display: flex;
   text-decoration: none;
 `;
+
+// export const LogoLink = styled.a`
+//   display: flex;
+//   text-decoration: none;
+// `;
 
 export const Logo = styled.span`
   font-size: ${p => p.theme.fontSizes.xxxl}px;
