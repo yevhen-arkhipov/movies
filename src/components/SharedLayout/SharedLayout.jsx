@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import Loader from 'components/Loader';
 
+import { GlobalStyle } from './GlobalStyle';
 import {
   Header,
   Container,
@@ -33,6 +34,7 @@ const SharedLayout = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
+      <GlobalStyle />
     </>
   );
 };

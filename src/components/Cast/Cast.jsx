@@ -30,7 +30,8 @@ const Cast = () => {
   }, [movieId]);
 
   const baseImgUrl = 'https://image.tmdb.org/t/p/w185';
-  const defaultImg = 'https://i.ibb.co/mHBWWH3/1.jpg';
+  const defaultImg =
+    'https://s1.hostingkartinok.com/uploads/images/2022/12/fdcb3e54ee7208718aa93f352df4f3a0.jpg';
   const elements = casts.map(({ id, character, name, profile_path }) => (
     <CastCard key={id}>
       <CastImg

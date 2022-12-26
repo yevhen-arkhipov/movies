@@ -11,6 +11,7 @@ import { Section, Container } from './Movies.styled';
 const Movies = () => {
   const [searchMovies, setSearchMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [error, setError] = useState(null);
 
   const query = searchParams.get('query');
 
@@ -22,6 +23,7 @@ const Movies = () => {
           setSearchMovies(data);
         } catch (error) {
           console.error(error);
+          setError(error);
         }
       };
       fetchSearchMovies();
@@ -37,7 +39,9 @@ const Movies = () => {
     <Section>
       <Container>
         <SearchForm onSubmit={changeQuery} />
-        {searchMovies.length > 0 && <MovieList movies={searchMovies} />}
+        {searchMovies.length > 0 && !error && (
+          <MovieList movies={searchMovies} />
+        )}
       </Container>
     </Section>
   );

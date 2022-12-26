@@ -20,11 +20,6 @@ export const LogoLink = styled(Link)`
   text-decoration: none;
 `;
 
-// export const LogoLink = styled.a`
-//   display: flex;
-//   text-decoration: none;
-// `;
-
 export const Logo = styled.span`
   font-size: ${p => p.theme.fontSizes.xxxl}px;
 `;

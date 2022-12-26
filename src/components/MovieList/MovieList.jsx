@@ -14,7 +14,8 @@ import {
 const MovieList = ({ movies, sectionTitle = null }) => {
   const location = useLocation();
   const baseImgUrl = 'https://image.tmdb.org/t/p/w342/';
-  const defaultImg = 'https://i.ibb.co/nw331jk/1.jpg';
+  const defaultImg =
+    'https://s1.hostingkartinok.com/uploads/images/2022/12/c00e09f7e8dd83e96866df17cafeb506.jpg';
 
   return (
     <>

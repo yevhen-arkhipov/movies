@@ -12,8 +12,8 @@ export const Section = styled.section`
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
   width: 1280px;
 `;
 
@@ -47,7 +47,7 @@ export const MovieCard = styled.div`
 
 export const MovieImg = styled.img`
   width: 400px;
-  heigth: 6000px;
+  heigth: 600px;
 `;
 
 export const MovieDescr = styled.div`
