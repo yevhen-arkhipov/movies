@@ -13,7 +13,7 @@ const root = createRoot(rootElement);
 root.render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <BrowserRouter basename="/goit-react-hw-05-movies">
+      <BrowserRouter basename="/movies">
         <App />
       </BrowserRouter>
     </ThemeProvider>
